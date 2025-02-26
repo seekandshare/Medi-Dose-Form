@@ -5,188 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medi-Dose Pharmacy Customer Form</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #fff;
             padding: 20px;
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
         }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
+        .form-container h2 {
             margin-bottom: 20px;
             font-size: 24px;
+            color: #333;
         }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
+        .form-container label {
             display: block;
-            margin-bottom: 5px;
-            color: #34495e;
+            margin-bottom: 8px;
             font-weight: bold;
+            color: #555;
         }
-
-        input, select, textarea {
+        .form-container input[type="text"],
+        .form-container input[type="tel"],
+        .form-container textarea {
             width: 100%;
             padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             font-size: 16px;
-            transition: border-color 0.3s;
         }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        textarea {
+        .form-container textarea {
             resize: vertical;
-            min-height: 80px;
+            height: 100px;
         }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #3498db;
+        .form-container button {
+            background-color: #28a745;
+            color: #fff;
             border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background 0.3s;
         }
-
-        button:hover {
-            background: #2980b9;
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-            color: #27ae60;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 20px;
-            }
+        .form-container button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Medi-Dose Pharmacy Customer Information</h1>
+    <div class="form-container">
+        <h2>Medi-Dose Pharmacy Customer Form</h2>
         <form id="customerForm">
-            <div class="form-group">
-                <label for="name">Full Name *</label>
-                <input type="text" id="name" required placeholder="Enter your full name">
-            </div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-            <div class="form-group">
-                <label for="address">Address *</label>
-                <input type="text" id="address" required placeholder="Enter your complete address">
-            </div>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
 
-            <div class="form-group">
-                <label for="phone">Phone Number *</label>
-                <input type="tel" id="phone" required placeholder="03XX-XXXXXXX" pattern="[0-9]{4}-[0-9]{7}">
-            </div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
 
-            <div class="form-group">
-                <label for="society">Housing Society *</label>
-                <select id="society" required>
-                    <option value="">Select your housing society</option>
-                    <!-- Add Bahawalnagar housing societies here -->
-                    <option value="Model Town">New City</option>
-                    <option value="Canal View">Adan Valley</option>
-                    <option value="Jinnah Colony">Sutlej City</option>
-                    <option value="Satellite Town">Ali Garden</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
+            <label for="society">Housing Society Name:</label>
+            <input type="text" id="society" name="society" required>
 
-            <div class="form-group">
-                <label for="block">Block/Section</label>
-                <input type="text" id="block" placeholder="Enter your block/section">
-            </div>
+            <label for="block">Block:</label>
+            <input type="text" id="block" name="block" required>
 
-            <div class="form-group">
-                <label for="medicines">Medicines Currently Using *</label>
-                <textarea id="medicines" required placeholder="List the medicines you are currently using"></textarea>
-            </div>
+            <label for="medicine">Details of Medicine:</label>
+            <textarea id="medicine" name="medicine" required></textarea>
 
-            <button type="submit">Submit Information</button>
+            <button type="submit">Submit</button>
         </form>
-        <div class="success-message" id="successMessage">
-            Thank you! Your information has been submitted successfully.
-        </div>
     </div>
 
     <script>
-        // Replace with your Google Apps Script URL after setting it up
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxQvoCVIrgXRvsU6eCIsT6jpzmTyyMC4hrIrCOkkS1f2SabOLo9U7cYgXLaAp69t31BPQ/exec';
-
-        const form = document.getElementById('customerForm');
-        const successMessage = document.getElementById('successMessage');
-
-        form.addEventListener('submit', e => {
+        document.getElementById('customerForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                address: document.getElementById('address').value,
-                phone: document.getElementById('phone').value,
-                society: document.getElementById('society').value,
-                block: document.getElementById('block').value,
-                medicines: document.getElementById('medicines').value,
-                timestamp: new Date().toLocaleString()
-            };
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
 
-            fetch(scriptURL, {
+            fetch('https://script.google.com/macros/s/AKfycbzLFfrhKVs9Z9wAGWAK-qa48vQZrWaW_6hYe_RDcYzSbrZMBJuJCij8H-lvoVnzQQVRFQ/exec', {
                 method: 'POST',
-                body: JSON.stringify(formData),
+                body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                form.reset();
-                successMessage.style.display = 'block';
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
+            .then(response => response.json())
+            .then(data => {
+                alert('Form submitted successfully!');
+                document.getElementById('customerForm').reset();
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting the form. Please try again.');
+                alert('There was an error submitting the form.');
             });
         });
     </script>
